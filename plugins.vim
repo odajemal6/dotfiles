@@ -8,12 +8,11 @@ endif
 
 call plug#begin('~/.config/nvim/autoload/plugged')
 Plug 'ap/vim-css-color'
-Plug 'valloric/youcompleteme'
 Plug 'vim-airline/vim-airline'
 Plug 'othree/html5.vim'
-Plug 'prettier/vim-prettier', {
-  \ 'do': 'yarn install',
-  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 Plug 'vim-airline/vim-airline-themes'
-Plug 'davidhalter/jedi-vim'
+Plug 'mattn/emmet-vim'
+Plug 'dracula/vim',{'as':'dracula'}
+Plug 'gruvbox-community/gruvbox'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
