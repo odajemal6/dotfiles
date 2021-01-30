@@ -1,0 +1,29 @@
+syntax on
+set relativenumber
+set noerrorbells
+set tabstop=4 softtabstop=4
+set shiftwidth=4
+set expandtab
+set smartindent
+set nu
+set nohlsearch
+set hidden
+set nowrap
+set noswapfile
+set nobackup
+set undodir=~/.config/nvim/undodir
+set undofile
+set incsearch
+set scrolloff=8
+set colorcolumn=80
+set signcolumn=yes
+source $HOME/.config/nvim/vim-plug/plugins.vim
+source $HOME/.config/nvim/plug-conf/coc.vim
+colorscheme gruvbox
+set background=dark
+highlight Normal guibg=NONE
+set t_8f=\[[38;2;%lu;%lu;%lum
+set t_8b=\[[48;2;%lu;%lu;%lum
+set termguicolors
+set pyxversion=3
+set pyx=3
