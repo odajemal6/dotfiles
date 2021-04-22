@@ -491,21 +491,30 @@ awful.rules.rules = {
                      buttons = clientbuttons,
                      screen = awful.screen.preferred,
                      placement= awful.placement.no_overlap+awful.placement.no_offscreen,
-                     maximized_vertical= false,
-                     maximized_horizontal= false,
-                     floating = false,
-                     maximized = false
      }
     },
 
     -- Floating clients.
     { rule_any = {
+        instance = {
+            "DTA",
+            "copyq",
+            "pinentry",
+        },
+        class = {
+            "Arandr",
+            "Gpick",
+            "sxiv"
+        },
         -- Note that the name property shown in xprop might be set slightly after creation of the client
         -- and the name shown there might not match defined rules here.
         name = {
           "Event Tester",  -- xev.
         },
         role = {
+            "AlarmWindow",
+            "ConfigManager",
+            "pop-up",
         }
       }, properties = { floating = true }},
 
