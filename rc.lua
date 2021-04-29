@@ -42,6 +42,14 @@ do
     end)
 end
 -- }}}
+-- This function will run once every time Awesome is started
+local function run_once(cmd_arr)
+    for _, cmd in ipairs(cmd_arr) do
+        awful.spawn.with_shell(string.format("pgrep -u $USER -fx '%s' > /dev/null || (%s)", cmd, cmd))
+    end
+end
+
+run_once({ "nm-applet", "picom","volumeicon" }) -- comma-separated entries
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
@@ -58,8 +66,8 @@ beautiful.gap_single_client = true
 awful.mouse.snap.edge_enabled = false
 
 -- This is used later as the default terminal and editor to run.
-terminal = "alacritty"
-editor = os.getenv("EDITOR") or "vim"
+terminal = "kitty"
+editor = os.getenv("EDITOR") or "nvim"
 editor_cmd = terminal .. " -e " .. editor
 
 -- Default modkey.
@@ -92,7 +100,7 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock()
+mytextclock = wibox.widget.textclock(" %a %b %d, %I:%M ")
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -245,6 +253,10 @@ globalkeys = gears.table.join(
     -- Standard program
     awful.key({modkey}, "Return", function () awful.spawn(terminal) end,
               {description = "Terminal", group = "super"}),
+    awful.key({modkey}, "x", function() awful.spawn.with_shell("sh ~/.config/rofi/powermenu.sh") end,
+              {description = "Power", group = "super"}),
+    awful.key({modkey}, "Print", function() awful.spawn.with_shell("sh ~/.config/bspwm/scripts/screenshot.sh") end,
+              {description = "Power", group = "super"}),
     awful.key({modkey}, "d", function() awful.spawn("dmenu_run") end,
               {description = "Dmenu", group = "super"}),
     awful.key({ modkey, "Shift" }, "w", awesome.restart,
@@ -597,6 +609,3 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- }}}
 
 awful.spawn.with_shell("sh ~/.screenlayout/screen.sh")
-awful.spawn.with_shell("picom")
-awful.spawn.with_shell("nm-applet")
-awful.spawn.with_shell("volumeicon")
